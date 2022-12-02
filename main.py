@@ -92,41 +92,23 @@ input_Age = st.slider('Enter Age', 0, max(data["Age"]), 100)
 #     output = round(int(prediction[0]), 2)
 ##
 
-
-
-#xgc = XGBClassifier()
-
-#xgc.fit(x_train,y_train)
-
-#xg_pred = xgc.predict(x_test)
-# predict wether the applicant will default or not not if the credit card is issued
 if st.button('Make Prediction'):
-    
-    
-    final_features = [input_Agency,input_Agency_Type,input_Dist_Channel, input_Prod_Name, input_Duration, input_Destination, input_Net_Sales, input_Commission, input_Age]
-#     inputs = np.expand_dims(features, 0)
-    #Training the best model(XGBoost)
-#     X = data.drop(['Claim'], axis=1)
-#     y = data['Claim']
-#     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 123)
-#         #adasyn = ADASYN()
-#     #X_train,y_train = adasyn.fit_resample(X_train,y_train)
-    
-#     scaler = StandardScaler()
-#     X_train = scaler.fit_transform(X_train)
-#     X_test = scaler.transform(X_test)
 
-#     best_xgboost_model = XGBClassifier(max_depth=5,n_estimators=250, min_child_weight=8)
-    int_features = [int(x) for x in final_features]
-    print(int_features)
-    final_features = [np.array(int_features)]
-    final_features = pd.DataFrame(final_features)
-    prediction = model.predict(final_features)
-#     best_xgboost_model.fit(X_train, y_train)
+    inputs = np.expand_dims(
+        [input_Agency,input_Agency_Type,input_Dist_Channel, input_Prod_Name, input_Duration, input_Destination, input_Net_Sales, input_Commission, input_Age], 0)
+    prediction = xgc.predict(inputs)
+    #Training the best model(XGBoost) 
+    X = my_data.drop(['Claim'], axis=1)
+    y = my_data['Claim']
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 123)
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
+    best_xgboost_model = XGBClassifier()
+    best_xgboost_model.fit(X_train, y_train)
     #Make prediction and print output
-#     prediction = best_xgboost_model.predict(inputs)
-  
-    if prediction==Yes:
+    prediction = best_xgboost_model.predict(inputs)
+    if prediction:
         st.write("Your insurance will be claimed")
     else: 
         st.write("Your insurance will not be claimed")
