@@ -74,10 +74,10 @@ input_Net_Sales = st.slider('Enter Net Sales', 0.0, max(data["Net_Sales"]), 100.
 input_Commission = st.slider('Enter Commission Value', 0.0, max(data["Commission"]), 100.0)
 input_Age = st.slider('Enter Age', 0, max(data["Age"]), 100)
 
-features = [input_Agency,input_Agency_Type,input_Dist_Channel, input_Prod_Name, input_Duration, input_Destination, input_Net_Sales, input_Commission, input_Age]
+#features = [input_Agency,input_Agency_Type,input_Dist_Channel, input_Prod_Name, input_Duration, input_Destination, input_Net_Sales, input_Commission, input_Age]
 
-int_features = [int(x) for x in features]
-final_features = [np.array(int_features)]
+#int_features = [int(x) for x in features]
+#final_features = [np.array(int_features)]
 #x = data.drop(columns='Claim')
 #y = data['Claim']
 #x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=1)
@@ -92,7 +92,7 @@ final_features = [np.array(int_features)]
 # predict wether the applicant will default or not not if the credit card is issued
 if st.button('Make Prediction'):
 
-    inputs = np.array(final_features)
+    inputs = np.expans_dims(
         [input_Agency,input_Agency_Type,input_Dist_Channel, input_Prod_Name, input_Duration, input_Destination, input_Net_Sales, input_Commission, input_Age], 0)
     #Training the best model(XGBoost)
     X = data.drop(['Claim'], axis=1)
