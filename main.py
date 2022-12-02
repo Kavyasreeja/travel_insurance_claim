@@ -30,43 +30,43 @@ if st.checkbox('Show Training Dataframe'):
     data
    
 #Read the appliaction details that has been given to the GUI by any random user
-input_Agency=st.subheader("Please select relevant features of your Agency")
+st.subheader("Please select relevant features of your Agency")
 left_column, right_column = st.columns(2)
 with left_column:
-    inp_Agency = st.radio(
+    input_Agency = st.radio(
         'Name of the Agency',
         np.unique(data['Agency']))   
     
-input_Agency_Type=st.subheader("Please select relevant features of your Agency Type")
+#input_Agency_Type=st.subheader("Please select relevant features of your Agency Type")
 left_column, right_column = st.columns(2)
 with left_column:
-    inp_Agency_Type = st.radio(
+    input_Agency_Type = st.radio(
         'Name of the Agency Type',
         np.unique(data['Agency_Type']))   
     
-input_Dist_Channel=st.subheader("Please select relevant features of your Dist Channel")
+#input_Dist_Channel=st.subheader("Please select relevant features of your Dist Channel")
 left_column, right_column = st.columns(2)
 with left_column:
-    inp_Dist_Channel = st.radio(
+    input_Dist_Channel = st.radio(
         'Name of the Dist Channel',
         np.unique(data['Dist_Channel']))   
     
     
-input_Prod_Name=st.subheader("Please select relevant features of your Product")
+#input_Prod_Name=st.subheader("Please select relevant features of your Product")
 left_column, right_column = st.columns(2)
 with left_column:
-    inp_Prod_Name = st.radio(
+    input_Prod_Name = st.radio(
         'Name of the Product',
         np.unique(data['Prod_Name']))
 
 
 
-input_Duration = st.slider('Enter Duration', 0, max(data["Duration"]), 200)
+#input_Duration = st.slider('Enter Duration', 0, max(data["Duration"]), 200)
 
-input_Destination=st.subheader("Please select relevant features of your Destination")
+#input_Destination=st.subheader("Please select relevant features of your Destination")
 left_column, right_column = st.columns(2)
 with left_column:
-    inp_Destination = st.radio(
+    input_Destination = st.radio(
         'Name of the Destination',
         np.unique(data['Destination']))
 
