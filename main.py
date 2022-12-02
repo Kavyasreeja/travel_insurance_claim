@@ -6,7 +6,7 @@ from xgboost import XGBClassifier
 import numpy as np
 st.header("Claim Prediction app")
 st.text_input("Enter your Name: ", key="name")
-data = pd.read_csv("dic.csv")
+data = pd.read_csv("travel insurance.csv")
 #load label encoder
 encoder = LabelEncoder()
 encoder.classes_ = np.load('classes.npy',allow_pickle=True)
