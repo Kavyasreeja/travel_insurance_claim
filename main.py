@@ -1,3 +1,9 @@
+import pickle
+import numpy as np
+
+# load the model from disk
+loaded_model = pickle.load(open('streamlit_insurance_predictcharges.pkl', 'rb'))
+
 import streamlit as st
 import pandas as pd
 from sklearn.model_selection import train_test_split
