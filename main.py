@@ -92,7 +92,7 @@ input_Age = st.slider('Enter Age', 0, max(data["Age"]), 100)
 # predict wether the applicant will default or not not if the credit card is issued
 if st.button('Make Prediction'):
 
-    inputs = np.expans_dims(
+    inputs = np.expand_dims(
         [input_Agency,input_Agency_Type,input_Dist_Channel, input_Prod_Name, input_Duration, input_Destination, input_Net_Sales, input_Commission, input_Age], 0)
     #Training the best model(XGBoost)
     X = data.drop(['Claim'], axis=1)
