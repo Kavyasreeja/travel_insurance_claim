@@ -1,17 +1,18 @@
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-from itertools import combinations
-import numpy as np
-from hyperopt import hp
-from hyperopt import fmin, tpe, STATUS_OK, STATUS_FAIL, Trials
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import  LabelEncoder
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import RandomForestRegressor
+from imblearn.over_sampling import SMOTENC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 import xgboost as xgb
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from sklearn.metrics import classification_report, accuracy_score, f1_score
+from sklearn import tree
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC 
+from sklearn.svm import LinearSVC, SVC, NuSVC
+from keras.models import Sequential, load_model
+from keras.layers import Dense
+from sklearn.naive_bayes import GaussianNB
+from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import RandomizedSearchCV, GridSearchCV
 def evauation_model(pred, y_val):
   score_MSE = round(mean_squared_error(pred, y_val),2)
   score_MAE = round(mean_absolute_error(pred, y_val),2)
@@ -41,7 +42,7 @@ def models_score(model_name, train_data, y_train, val_data, y_val):
         score_MSE, score_MAE, score_r2score = evauation_model(pred, y_val)
         return round(score_MSE, 2), round(score_MAE, 2), round(score_r2score, 2)
 
-data = pd.read_csv("Fish.csv")
+data = pd.read_csv("travel insurance.csv")
 data_cleaned = data.drop("Weight", axis=1)
 y = data['Weight']
 #%%
