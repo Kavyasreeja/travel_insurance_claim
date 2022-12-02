@@ -12,7 +12,7 @@ def evauation_model(pred, y_val):
   return score_MSE, score_MAE, score_r2score
 
 
-data = pd.read_csv("Fish.csv")
+data = pd.read_csv("travel insurance.csv")
 data_cleaned = data.drop("Weight", axis=1)
 y = data['Weight']
 x_train, x_test, y_train, y_test = train_test_split(data_cleaned, y, test_size=0.2, random_state=42)
