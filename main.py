@@ -30,21 +30,21 @@ if st.checkbox('Show Training Dataframe'):
     data
    
 #Read the appliaction details that has been given to the GUI by any random user
-st.subheader("Please select relevant features of your Agency")
+input_Agency=st.subheader("Please select relevant features of your Agency")
 left_column, right_column = st.columns(2)
 with left_column:
     inp_Agency = st.radio(
         'Name of the Agency',
         np.unique(data['Agency']))   
     
-st.subheader("Please select relevant features of your Agency Type")
+input_Agency_Type=st.subheader("Please select relevant features of your Agency Type")
 left_column, right_column = st.columns(2)
 with left_column:
     inp_Agency_Type = st.radio(
         'Name of the Agency Type',
         np.unique(data['Agency_Type']))   
     
-st.subheader("Please select relevant features of your Dist Channel")
+input_Dist_Channel=st.subheader("Please select relevant features of your Dist Channel")
 left_column, right_column = st.columns(2)
 with left_column:
     inp_Dist_Channel = st.radio(
@@ -52,7 +52,7 @@ with left_column:
         np.unique(data['Dist_Channel']))   
     
     
-st.subheader("Please select relevant features of your Product")
+input_Prod_Name=st.subheader("Please select relevant features of your Product")
 left_column, right_column = st.columns(2)
 with left_column:
     inp_Prod_Name = st.radio(
@@ -63,7 +63,7 @@ with left_column:
 
 input_Duration = st.slider('Enter Duration', 0, max(data["Duration"]), 200)
 
-st.subheader("Please select relevant features of your Destination")
+input_Destination=st.subheader("Please select relevant features of your Destination")
 left_column, right_column = st.columns(2)
 with left_column:
     inp_Destination = st.radio(
@@ -74,6 +74,10 @@ input_Net_Sales = st.slider('Enter Net Sales', 0.0, max(data["Net_Sales"]), 100.
 input_Commission = st.slider('Enter Commission Value', 0.0, max(data["Commission"]), 100.0)
 input_Age = st.slider('Enter Age', 0, max(data["Age"]), 100)
 
+features = [input_Agency,input_Agency_Type,input_Dist_Channel, input_Prod_Name, input_Duration, input_Destination, input_Net_Sales, input_Commission, input_Age]
+
+int_features = [int(x) for x in features]
+final_features = [np.array(int_features)]
 #x = data.drop(columns='Claim')
 #y = data['Claim']
 #x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=1)
@@ -88,11 +92,11 @@ input_Age = st.slider('Enter Age', 0, max(data["Age"]), 100)
 # predict wether the applicant will default or not not if the credit card is issued
 if st.button('Make Prediction'):
 
-    inputs = np.expand_dims(
+    inputs = np.array(final_features)
         [input_Agency,input_Agency_Type,input_Dist_Channel, input_Prod_Name, input_Duration, input_Destination, input_Net_Sales, input_Commission, input_Age], 0)
     #Training the best model(XGBoost)
     X = data.drop(['Claim'], axis=1)
-    y = data['Net_sales']
+    y = data['Claim']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 123)
         #adasyn = ADASYN()
     #X_train,y_train = adasyn.fit_resample(X_train,y_train)
