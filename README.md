@@ -1,1 +1,1 @@
-# WishWeightPredictionApplication
+# Travel insurance predication application
