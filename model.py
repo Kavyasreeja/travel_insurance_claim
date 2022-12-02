@@ -42,7 +42,7 @@ def models_score(model_name, train_data, y_train, val_data, y_val):
         score_MSE, score_MAE, score_r2score = evauation_model(pred, y_val)
         return round(score_MSE, 2), round(score_MAE, 2), round(score_r2score, 2)
 
-data = pd.read_csv("travel insurance.csv")
+data = pd.read_csv("dic.csv")
 data_cleaned = data.drop("Weight", axis=1)
 y = data['Weight']
 #%%
