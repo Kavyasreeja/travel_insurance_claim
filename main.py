@@ -91,7 +91,7 @@ if st.button('Make Prediction'):
     inputs = np.expand_dims(
         [input_Agency,input_Agency_Type,input_Dist_Channel, input_Prod_Name, input_Duration, input_Destination, input_Net_Sales, input_Commission, input_Age], 0)
     #Training the best model(XGBoost)
-    X = data.drop(['Duration'], axis=1)
+    X = data.drop(['Claim'], axis=1)
     y = data['Net_sales']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 123)
         #adasyn = ADASYN()
